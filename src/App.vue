@@ -35,7 +35,7 @@
         </ul>
       </nav>
     </aside>
-    <main class="flex-1 p-8 overflow-y-auto">
+    <main class="flex-1 p-8 overflow-y-auto max-h-screen">
       <router-view></router-view>
     </main>
   </div>
