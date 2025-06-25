@@ -28,13 +28,14 @@ const date = new Date(props.data.sellDate)
 </script>
 
 <template>
-  <ModalUpdateStockHistory :open="openModal.update" :id="props.data.id" :type="'update'" @close="closeAddModal"/>
-  <ModalDeleteStockHistory :open="openModal.delete" :id="props.data.id" :type="'delete'" @close="closeAddModal"/>
+  <ModalUpdateStockHistory :open="openModal.update" :id="props.data.id" :type="'update'" @close="closeAddModal" />
+  <ModalDeleteStockHistory :open="openModal.delete" :id="props.data.id" :type="'delete'" @close="closeAddModal" />
   <div class="p-4 rounded-xl shadow-md mb-4 bg-gray-50">
     <div class="flex justify-between font-semibold">
       <span>{{ props.data.productCode }}</span>
-      <span :class="props.data.movement === 'IN' ? 'text-green-500' : 'text-red-500'">{{ props.data.movement
-      }}</span>
+      <span :class="props.data.movement === 'IN' ? 'text-green-500' : 'text-red-500'">
+        {{ props.data.movement}}
+      </span>
     </div>
 
     <div v-if="props.data.movement === 'OUT'" class="flex justify-between mb-4">
@@ -43,11 +44,16 @@ const date = new Date(props.data.sellDate)
       <span>sell total value: {{ props.data.totalValue }}</span>
     </div>
 
-    <span>{{ date.toLocaleDateString() }}</span>
+    <div class="flex items-center">
+      <span>{{ date.toLocaleDateString() }}</span>
+      <div class="ml-auto w-fit flex gap-4">
+        <button class="max-w-fit bg-orange-400 hover:bg-orange-400/60 text-white font-semibold !text-xs"
+        @click="openAddModal('update')">Update
+        item</button>
+        <button class="max-w-fit bg-red-600/80 hover:bg-red-600/60 text-white font-semibold !text-xs"
+        @click="openAddModal('delete')">Remove item</button>
+      </div>
+    </div>
   </div>
-  <button class="max-w-fit bg-orange-400 hover:bg-orange-400/60 text-white font-semibold !text-xs"
-    @click="openAddModal('update')">Update
-    item</button>
-  <button class="max-w-fit bg-red-600/80 hover:bg-red-600/60 text-white font-semibold !text-xs"
-    @click="openAddModal('delete')">Remove item</button>
+
 </template>
