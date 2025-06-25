@@ -34,7 +34,7 @@ const closeAddModal = (key: ModalType): void => {
   <ModalSellProduct :code="props.code!" :open="openModal.sell" type="sell" @close="closeAddModal" />
   <ModalDeleteProduct :code="props.code!" :open="openModal.delete" type="delete" @close="closeAddModal" />
   <ModalUpdateProduct :code="props.code!" :open="openModal.update" type="update" @close="closeAddModal" />
-  <div class="flex rounded-2xl bg-gray-200 p-4 shadow-sm">
+  <div class="flex rounded-2xl bg-gray-200 p-4 shadow-sm bg-gray-50">
     <div class="flex flex-col">
       <span class="font-semibold">{{ props.code }}</span>
       <span>{{ props.description }}</span>
