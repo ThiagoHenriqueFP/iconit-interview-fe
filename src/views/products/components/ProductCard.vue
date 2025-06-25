@@ -5,13 +5,11 @@ import ModalSellProduct from './ModalSellProduct.vue';
 import ModalDeleteProduct from './ModalDeleteProduct.vue';
 import ModalUpdateProduct from './ModalUpdateProduct.vue';
 import type { ModalType } from '../../../domain/entities/modal-type';
+import type { GetProduct } from '../../../domain/entities/product/get-product';
 
-const props = defineProps({
-  code: String,
-  type: String,
-  description: String,
-  quantitiy: Number
-})
+const props = defineProps<{
+  product: GetProduct
+}>()
 
 const openModal: Ref<Record<ModalType, boolean>> = ref({
   add: false,
@@ -30,18 +28,21 @@ const closeAddModal = (key: ModalType): void => {
 </script>
 
 <template>
-  <ModalAddToStock :code="props.code" :open="openModal.add" type="add" @close="closeAddModal" />
-  <ModalSellProduct :code="props.code!" :open="openModal.sell" type="sell" @close="closeAddModal" />
-  <ModalDeleteProduct :code="props.code!" :open="openModal.delete" type="delete" @close="closeAddModal" />
-  <ModalUpdateProduct :code="props.code!" :open="openModal.update" type="update" @close="closeAddModal" />
-  <div class="flex rounded-2xl bg-gray-200 p-4 shadow-sm bg-gray-50">
+  <ModalAddToStock :code="props.product.code" :open="openModal.add" type="add" @close="closeAddModal" />
+  <ModalSellProduct :code="props.product.code" :open="openModal.sell" type="sell" @close="closeAddModal" />
+  <ModalDeleteProduct :code="props.product.code" :open="openModal.delete" type="delete" @close="closeAddModal" />
+  <ModalUpdateProduct :code="props.product.code" :open="openModal.update" type="update" @close="closeAddModal" />
+  <div class="flex rounded-2xl p-4 shadow-sm bg-gray-50">
     <div class="flex flex-col">
-      <span class="font-semibold">{{ props.code }}</span>
-      <span>{{ props.description }}</span>
+      <span class="font-semibold">{{ props.product.code }}</span>
+      <span>{{ props.product.description }}</span>
     </div>
     <div class="flex flex-col ml-auto mr-10">
-      <span class="ml-auto text-xs">{{ props.type?.replace('_', ' ') }}</span>
-      <span class="ml-auto text-xs"><span class="font-semibold">{{ props.quantitiy }}</span> in stock</span>
+      <span class="ml-auto text-xs">{{ props.product.type?.replace('_', ' ') }}</span>
+      <span class="ml-auto text-xs"><span class="font-semibold">{{ props.product.stockQuantity }}</span> in stock</span>
+      <span class="ml-auto text-xs"><span class="font-semibold">{{ props.product.totalAmountSold }}</span> solded</span>
+      <span class="ml-auto text-xs"><span class="font-semibold">{{ props.product.totalValueSold.toFixed(2) }}</span> value solded</span>
+      <span class="ml-auto text-xs"><span class="font-semibold">{{ props.product.profit.toFixed(2) }}</span> profit</span>
     </div>
     <div class="flex gap-1">
       <button class="max-w-fit bg-blue-500 hover:bg-blue-500/60 text-white font-semibold !text-xs"

@@ -35,8 +35,7 @@ onMounted(() => {
   <div v-if="products.length > 0">
     <ul v-for="product in products" :key="product.code" class="*:mb-2">
       <li>
-        <ProductCard :code="product.code" :description="product.description" :quantitiy="product.stockQuantity"
-          :type="product.type" />
+        <ProductCard :product="product" />
       </li>
     </ul>
   </div>
