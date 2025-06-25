@@ -1,7 +1,7 @@
 export type SaveProduct = {
   code: string
   description: string
-  type: string
+  type: number
   supplierPrice: number
   stockQuantity: number
 }

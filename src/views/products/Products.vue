@@ -14,7 +14,6 @@ async function getProducts() {
   try {
     const response = await GetproductService.instance.perform()
     products.value = response
-    console.log(response)
   } catch (err) {
     if (err instanceof Error)
       useToast().error(err.message)
@@ -41,7 +40,7 @@ onMounted(() => {
       </path>
     </svg>
   </div>
-  <div v-if="products.length > 0" class="md:grid md:grid-cols-2 md:gap-x-2">
+  <div v-if="products.length > 0">
     <ul v-for="product in products" :key="product.code" class="*:mb-2">
       <li>
         <ProductCard
@@ -52,5 +51,7 @@ onMounted(() => {
       </li>
     </ul>
   </div>
-
+  <div v-if="products.length == 0 && !loading">
+    <span>No products found</span>
+  </div>
 </template>
