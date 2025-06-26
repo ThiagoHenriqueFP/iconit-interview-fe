@@ -1,5 +1,15 @@
-# Vue 3 + TypeScript + Vite
+# Iconit - teste técnico
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+O objetivo deste projeto é consumir o backend desenvolvido no mesmo teste técnico. Atualmente tem-se 3 páginas.
+- Home -> com informações gerais
+- Product -> com listagem e manipulação das entidades de produto no backend
+- History -> com listagem e manipulação das entidades de estoque no backend
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+A arquitetura foi pensada para manter a coesão e faciltiar a navegação entre os diretórios e manter, minimamente uma arquitetura limpa e com as páginas e entidades dentro de seu 'domíno'.
+
+Tecnologias:
+- vue3
+- tailwindcss
+
+link: 
+- http://localhost:5173/
